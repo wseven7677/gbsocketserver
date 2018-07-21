@@ -10,9 +10,9 @@ var app = express(),
     io = socket(httpser),
 
     nodePort = 8010,
-    
+
     storage = multer.diskStorage({
-        destination: '/usr/cycodes/greenbluechatserver/files',
+        destination: __dirname + '/files',
         filename(req, file, cb) {
             cb(null, 'uploadfile-' + Date.now() + '.png');
         }
@@ -28,34 +28,29 @@ app.use(bodyparser.json());
 
 /**********************************/
 
-    app.get('/io', function(req, res) {
+app.get('/io', function(req, res) {
+    res.send('hello!!!');
+});
 
-            res.sendFile(__dirname + '/index.html');
-    });
-
-// ---upload pictures---
 app.post('/api/members2uploadpic/', upload.single('imgObj'), function(req, res) {
     // 取数据，发数据：
- /*   mongo('members', handleUploadPic(req), function(resd) {
-        res.send(resd);
-    });*/
+    /*   mongo('members', handleUploadPic(req), function(resd) {
+           res.send(resd);
+       });*/
 });
-
-// ----- user validate ------
 
 app.post('/api/users', (req, res) => {
-  /*  mongoUser('users', req.body, resd => {
-        res.send(resd); // true
-    });*/
+
 });
 
-io.on('connection', function(socket){
-  console.log('a user connected');
+io.on('connection', function(socket) {
+    console.log('a user connected');
 });
 
 
-// =============================
+
+/**********************************/
+
 app.listen(nodePort, 'localhost', function() {
-    console.log('service is on.');
+    console.log('service is on ' + nodePort + '.');
 });
-
