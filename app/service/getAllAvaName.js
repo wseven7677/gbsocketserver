@@ -21,8 +21,11 @@ const getAllAvaName = function(callback) {
                 throw err2;
             }
 
+            let list = availableList.map(one => {
+                return one.name;
+            });
             // 返回数据处:
-            callback(availableList);
+            callback(list);
 
         });
 
