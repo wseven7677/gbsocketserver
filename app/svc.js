@@ -24,7 +24,7 @@ const getRoleName = function(callback) {
             var len = availableList.length,
                 num = Math.round(Math.random() * (len - 1));
 
-            gotName = availableList[num];
+            gotName = availableList[num].name;
 
         });
         // 将该名字从该集合去除
