@@ -1,5 +1,5 @@
 import mongodb from 'mongodb'
-import mongoKey from './mongoKey'
+import mongoKey from '../mongoKey'
 
 let mongoClient = mongodb.MongoClient,
     dbName = mongoKey.dbName,
