@@ -5,6 +5,8 @@ import http from 'http'
 import bodyparser from 'body-parser'
 import multer from 'multer'
 
+import svc from './svc.js'
+
 var app = express(),
     httpser = http.Server(app),
     io = socket(httpser),
@@ -28,19 +30,24 @@ app.use(bodyparser.json());
 
 /**********************************/
 
+// app.post('/api/members2uploadpic/', upload.single('imgObj'), function(req, res) {
+//     /*   mongo('members', handleUploadPic(req), function(resd) {
+//            res.send(resd);
+//        });*/
+// });
+
+// app.post('/api/users', (req, res) => {
+//
+// });
+
 app.get('/io', function(req, res) {
     res.send('hello!!!');
 });
 
-app.post('/api/members2uploadpic/', upload.single('imgObj'), function(req, res) {
-    // 取数据，发数据：
-    /*   mongo('members', handleUploadPic(req), function(resd) {
-           res.send(resd);
-       });*/
-});
-
-app.post('/api/users', (req, res) => {
-
+app.get('/api/getRoleName', function(req, res) {
+    svc.getRoleName((gotName) => {
+        res.send(gotName);
+    })
 });
 
 io.on('connection', function(socket) {

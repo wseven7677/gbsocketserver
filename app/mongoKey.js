@@ -1,6 +1,6 @@
-let dbName = 'ycjxc',
+let dbName = 'greenblue',
     dbPort = '27017',
-    dbUser = 'gm',
+    dbUser = 'blue',
     dbPassword = 'qwe123',
     dbUrl = 'mongodb://'+dbUser+':'+dbPassword+'@'+'localhost:' + dbPort + '/'+dbName;
 
