@@ -49,6 +49,12 @@ app.get('/api/getRoleName', function(req, res) {
         res.send(gotName);
     })
 });
+app.get('/api/getAllAvaName', function(req, res) {
+    svc.getAllAvaName((gotName) => {
+        res.send(gotName);
+    })
+});
+
 
 io.on('connection', function(socket) {
     console.log('a user connected');
