@@ -25,6 +25,8 @@ const getRoleName = function(callback) {
                 num = Math.round(Math.random() * (len - 1));
 
             gotName = availableList[num].name;
+            // 返回数据处:
+            callback(gotName);
 
         });
         // 将该名字从该集合去除
@@ -33,8 +35,6 @@ const getRoleName = function(callback) {
         }, {
             justOne: true
         });
-        // 返回数据处:
-        callback(gotName);
 
         db.close();
         console.log('database closed.');
