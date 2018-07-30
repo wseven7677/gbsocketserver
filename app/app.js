@@ -1,6 +1,6 @@
 import express from 'express'
 import socket from 'socket.io'
-import http from 'http'
+// import http from 'http'
 
 import bodyparser from 'body-parser'
 import multer from 'multer'
@@ -8,8 +8,6 @@ import multer from 'multer'
 import svc from './svc.js'
 
 var app = express(),
-    httpser = http.Server(app),
-    io = socket(httpser),
 
     nodePort = 8010,
 
@@ -21,7 +19,14 @@ var app = express(),
     }),
     upload = multer({
         storage
-    });
+    }),
+
+    server = app.listen(nodePort, 'localhost', function() {
+        console.log('service is on ' + nodePort + '.');
+    }),
+    io = socket.listen(server);
+
+/**********************************/
 
 app.use(bodyparser.urlencoded({
     extended: false
@@ -40,9 +45,6 @@ app.use(bodyparser.json());
 //
 // });
 
-app.get('/io', function(req, res) {
-    res.send('hello!!!');
-});
 
 app.get('/api/getRoleName', function(req, res) {
     svc.getRoleName((gotName) => {
@@ -58,12 +60,4 @@ app.get('/api/getAllAvaName', function(req, res) {
 
 io.on('connection', function(socket) {
     console.log('a user connected');
-});
-
-
-
-/**********************************/
-
-app.listen(nodePort, 'localhost', function() {
-    console.log('service is on ' + nodePort + '.');
 });
