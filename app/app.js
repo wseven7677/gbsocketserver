@@ -1,6 +1,6 @@
 import express from 'express'
-import socket from 'socket.io'
-// import http from 'http'
+import http from 'http'
+import socketIo from 'socket.io'
 
 import bodyparser from 'body-parser'
 import multer from 'multer'
@@ -24,7 +24,7 @@ var app = express(),
     server = app.listen(nodePort, 'localhost', function() {
         console.log('service is on ' + nodePort + '.');
     }),
-    io = socket.listen(server);
+    io = socketIo(http.Server(app));
 
 /**********************************/
 
