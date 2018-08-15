@@ -21,11 +21,11 @@ var app = express(),
         storage
     }),
 
+    io = socketIo(http.Server(app));
+    
     app.listen(nodePort, 'localhost', function() {
         console.log('service is on ' + nodePort + '.');
-    }),
-    io = socketIo(http.Server(app));
-
+    });
 /**********************************/
 
 app.use(bodyparser.urlencoded({
