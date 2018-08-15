@@ -6,12 +6,12 @@ let mongoClient = mongodb.MongoClient,
     dbUrl = mongoKey.dbUrl;
 
 
-const getAllAvaName = function(callback) {
+const addNewName = function(newName, callback) {
     mongoClient.connect(dbUrl, function(err, db) {
         if (err) {
             throw err;
         }
-        console.log('database connected.');
+        console.log('database connected for addNewName');
 
         var onedb = db.db(dbName),
             oneCollection = onedb.collection('availableRoleNameList');
@@ -21,17 +21,26 @@ const getAllAvaName = function(callback) {
                 throw err2;
             }
 
+            // 所有可用name列表：
             let list = availableList.map(one => {
                 return one.name;
             });
-            // 返回数据处:
-            callback(list);
+
+            if(list.indexOf(newName) === -1) {
+                oneCollection.insert({
+                    'name': newName
+                });
+                callback('success.');
+            }else {
+                callback('failed: already had the name');
+            }
 
             db.close();
-            console.log('database closed.');
+            console.log('database closed for addNewName');
         });
+
 
     });
 };
 
-export default getAllAvaName;
+export default addNewName;
