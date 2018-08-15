@@ -1,5 +1,4 @@
 import express from 'express'
-import http from 'http'
 import socketIo from 'socket.io'
 
 import bodyparser from 'body-parser'
@@ -21,7 +20,11 @@ var app = express(),
         storage
     }),
 
-    io = socketIo(http.Server(app));
+    server = app.listen(nodePort, function() {
+        console.log('service is on ' + nodePort + '.');
+    }),
+
+    io = socketIo(server);
     
     
 /**********************************/
@@ -59,6 +62,3 @@ app.get('/api/getAllAvaName', function(req, res) {
     });
 });
 
-app.listen(nodePort, function() {
-    console.log('service is on ' + nodePort + '.');
-});
