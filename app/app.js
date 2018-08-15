@@ -23,9 +23,7 @@ var app = express(),
 
     io = socketIo(http.Server(app));
     
-    app.listen(nodePort, 'localhost', function() {
-        console.log('service is on ' + nodePort + '.');
-    });
+    
 /**********************************/
 
 app.use(bodyparser.urlencoded({
@@ -46,6 +44,10 @@ app.use(bodyparser.json());
 // });
 
 
+io.on('connection', function(socket) {
+    console.log('a user connected');
+});
+
 app.get('/api/getRoleName', function(req, res) {
     svc.getRoleName((gotName) => {
         res.send(gotName);
@@ -57,7 +59,6 @@ app.get('/api/getAllAvaName', function(req, res) {
     });
 });
 
-
-io.on('connection', function(socket) {
-    console.log('a user connected');
+app.listen(nodePort, function() {
+    console.log('service is on ' + nodePort + '.');
 });
