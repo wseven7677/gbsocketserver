@@ -1,13 +1,13 @@
 {
-  "name": "nodeservice",
+  "name": "gbservice",
   "version": "1.0.0",
-  "description": "node service for mongodb.",
+  "description": "node service with mongodb for gb prj",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel": "babel app -d dist"
   },
-  "author": "caoyu13",
+  "author": "wseven7677",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",

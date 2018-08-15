@@ -1,15 +1,12 @@
-let dbName = 'ycjxc',
+let dbName = 'greenblue',
     dbPort = '27017',
-    dbUser = 'gm',
+    dbUser = 'blue',
     dbPassword = 'qwe123',
     dbUrl = 'mongodb://'+dbUser+':'+dbPassword+'@'+'localhost:' + dbPort + '/'+dbName;
 
 const mongoKey = {
     dbName,
-    dbPort,
-    dbUrl,
-    dbUser,
-    dbPassword
+    dbUrl
 };
 
 export default mongoKey;
