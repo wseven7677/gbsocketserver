@@ -6,10 +6,7 @@ let dbName = 'greenblue',
 
 const mongoKey = {
     dbName,
-    dbPort,
-    dbUrl,
-    dbUser,
-    dbPassword
+    dbUrl
 };
 
 export default mongoKey;

@@ -21,7 +21,7 @@ var app = express(),
         storage
     }),
 
-    server = app.listen(nodePort, 'localhost', function() {
+    app.listen(nodePort, 'localhost', function() {
         console.log('service is on ' + nodePort + '.');
     }),
     io = socketIo(http.Server(app));
@@ -49,12 +49,12 @@ app.use(bodyparser.json());
 app.get('/api/getRoleName', function(req, res) {
     svc.getRoleName((gotName) => {
         res.send(gotName);
-    })
+    });
 });
 app.get('/api/getAllAvaName', function(req, res) {
     svc.getAllAvaName((gotName) => {
         res.send(gotName);
-    })
+    });
 });
 
 
