@@ -26,6 +26,7 @@ const addNewName = function(newName, callback) {
                 return one.name;
             });
 
+            // 查询与处理--
             if(list.indexOf(newName) === -1) {
                 oneCollection.insert({
                     'name': newName

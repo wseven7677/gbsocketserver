@@ -7,9 +7,9 @@ import multer from 'multer'
 import svc from './svc.js'
 
 let app = express(),
-
+    // 服务开启端口--
     nodePort = 8010,
-
+    // 文件存储服务，包含：存储路径、重命名--
     storage = multer.diskStorage({
         destination: __dirname + '/files',
         filename(req, file, cb) {
@@ -19,15 +19,16 @@ let app = express(),
     upload = multer({
         storage
     }),
-
+    // 开启监听--
     server = app.listen(nodePort, function () {
         console.log('service is on ' + nodePort + '.');
     }),
-
+    // socket服务--
     io = socketIo(server);
 
 
 /**********************************/
+// bodyparser--用于保证post服务正常运行，会将post信息放在req.body中从而得到--
 
 app.use(bodyparser.urlencoded({
     extended: false
@@ -42,9 +43,9 @@ app.use(bodyparser.json());
 //        });*/
 // });
 
-// app.post('/api/users', (req, res) => {
-//
-// });
+/**********************************/
+// socket实时服务：
+
 
 let realTimeNumber = 0;
 
@@ -68,12 +69,17 @@ io.on('connection', function (socket) {
 
 });
 
-app.get('/api/getRoleName', function (req, res) {
+/**********************************/
+// 普通服务：
+
+
+app.get('/api/getRoleName', (req, res) => {
     svc.getRoleName((gotName) => {
         res.send(gotName);
     });
 });
-app.get('/api/getAllAvaName', function (req, res) {
+
+app.get('/api/getAllAvaName', (req, res) => {
     svc.getAllAvaName((gotName) => {
         res.send(gotName);
     });

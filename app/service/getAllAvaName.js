@@ -11,7 +11,7 @@ const getAllAvaName = function(callback) {
         if (err) {
             throw err;
         }
-        console.log('database connected.');
+        console.log('database connected for getAllAvaName');
 
         var onedb = db.db(dbName),
             oneCollection = onedb.collection('availableRoleNameList');
@@ -21,6 +21,7 @@ const getAllAvaName = function(callback) {
                 throw err2;
             }
 
+            // 只将名字返回--
             let list = availableList.map(one => {
                 return one.name;
             });
@@ -28,7 +29,7 @@ const getAllAvaName = function(callback) {
             callback(list);
 
             db.close();
-            console.log('database closed.');
+            console.log('database closed for getAllAvaName');
         });
 
     });
