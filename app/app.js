@@ -88,3 +88,19 @@ app.get('/api/getAllAvaName', (req, res) => {
 app.post('/api/addNewName', (req, res) => {
     svc.addNewName(req.body.name, rstmsg => res.send(rstmsg));
 });
+
+/**********************************/
+// fight：
+
+app.post('/api/fight/registerForFight', (req, res) => {
+    svc.registerForFight(req.body.name, rstmsg => res.send(rstmsg));
+});
+
+app.get('/api/fight/getAllFightName', (req, res) => {
+    svc.getAllFightName(output => res.send(output));
+});
+
+app.post('/api/fight/checkRight', (req, res) => {
+    svc.registerForFight(req.body.id, rstmsg => res.send(rstmsg));
+});
+
