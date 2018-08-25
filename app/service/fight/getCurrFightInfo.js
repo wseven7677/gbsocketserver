@@ -5,13 +5,13 @@ let mongoClient = mongodb.MongoClient,
     dbName = mongoKey.dbName,
     dbUrl = mongoKey.dbUrl;
 
-const getAllFightName = function (callback) {
+const getCurrFightInfo = function (callback) {
 
     mongoClient.connect(dbUrl, function (err, db) {
         if (err) {
             throw err;
         }
-        console.log('database connected for getAllFightName');
+        console.log('database connected for getCurrFightInfo');
 
         let onedb = db.db(dbName),
             oneCollection = onedb.collection('fightMatch'); 
@@ -28,14 +28,18 @@ const getAllFightName = function (callback) {
                 return one.label;
             });
 
-            callback(outputList); // array
+            callback({
+                memo: currentFight.memo,
+                list: outputList,
+                log: currentFight.log
+            }); // array
 
             db.close();
-            console.log('database closed for getOneTurn');
+            console.log('database closed for getCurrFightInfo');
 
         });
 
     });
 };
 
-export default getAllFightName;
+export default getCurrFightInfo;

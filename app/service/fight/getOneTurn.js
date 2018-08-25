@@ -16,7 +16,7 @@ const getOneTurn = function (callback) {
         console.log('database connected for getOneTurn');
 
         let onedb = db.db(dbName),
-            oneCollection = onedb.collection('fightMatch'); 
+            oneCollection = onedb.collection('fightMatch');
 
         // 进行增删改查--
         oneCollection.find().toArray(function (err2, allFight) {
@@ -38,10 +38,13 @@ const getOneTurn = function (callback) {
             oneCollection.update({
                 'time': currentFight.time
             }, {
+                'memo': currentFight.memo,
+                'time': currentFight.time,
+                'list': initList,
                 'log': log
             })
 
-            callback(log);
+            callback('done');
             db.close();
             console.log('database closed for getOneTurn');
 

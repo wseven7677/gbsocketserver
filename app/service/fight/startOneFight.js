@@ -9,6 +9,11 @@ const startOneFight = function (data, callback) {
 
     let memo = data.memo;
 
+    if(typeof memo !== 'string' || memo === '') {
+        callback('failed:无效的memo');
+        return;
+    }
+
     mongoClient.connect(dbUrl, function (err, db) {
         if (err) {
             throw err;

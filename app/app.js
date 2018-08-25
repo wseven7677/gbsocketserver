@@ -93,14 +93,21 @@ app.post('/api/addNewName', (req, res) => {
 // fight：
 
 app.post('/api/fight/registerForFight', (req, res) => {
-    svc.registerForFight(req.body.name, rstmsg => res.send(rstmsg));
+    svc.registerForFight(req.body, rstmsg => res.send(rstmsg));
 });
 
-app.get('/api/fight/getAllFightName', (req, res) => {
-    svc.getAllFightName(output => res.send(output));
+app.get('/api/fight/getCurrFightInfo', (req, res) => {
+    svc.getCurrFightInfo(output => res.send(output));
 });
 
 app.post('/api/fight/checkRight', (req, res) => {
-    svc.registerForFight(req.body.id, rstmsg => res.send(rstmsg));
+    svc.checkRight(req.body, rstmsg => res.send(rstmsg));
 });
 
+app.get('/api/fight/getOneTurn', (req, res) => {
+    svc.getOneTurn(rst => res.send(rst));
+});
+
+app.post('/api/fight/startOneFight', (req, res) => {
+    svc.startOneFight(req.body, rstmsg => res.send(rstmsg));
+});

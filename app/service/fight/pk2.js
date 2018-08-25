@@ -5,7 +5,7 @@ function fillIn(list) {
     let nameList = list.slice(0);
 
     // 必须是2的幂次方--
-    while (nameList.length & (nameList.length - 1) !== 0) {
+    while ((nameList.length & (nameList.length - 1)) !== 0) {
         nameList.push({
             value: -1,
             label: '空'
@@ -55,20 +55,30 @@ function fight(fightList) {
 
 const pk2 = function (data, mode) {
 
+    let inputList = data;
+
+    // 建立初始名单--
     if (mode === 'init') {
         // 获得数量正确的选手列表--
         let contestants = fillIn(data);
 
         // 打乱随机重排获得名单--
-        let nameList = [];
+        inputList = [];
         while (contestants.length > 0) {
-            let onePicked = contestants.splice(pickOne(contestants.length), 1);
-            nameList.push(onePicked);
+            let onePicked = contestants.splice(pickOne(contestants.length), 1)[0];
+            inputList.push(onePicked);
         }
+
+        return inputList;
     }
 
-    // 一轮pk--
-    return fight(nameList);
+    // 当终局时--
+    if(inputList.length === 1) {
+        return inputList;
+    }
+
+    // 普通的一轮pk--
+    return fight(inputList);
 
 };
 
