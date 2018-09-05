@@ -69,7 +69,7 @@ const registerForFight = function (data, callback) {
             }
 
             db.close();
-            console.log('database closed for getOneTurn');
+            console.log('database closed for registerForFight');
 
         });
 

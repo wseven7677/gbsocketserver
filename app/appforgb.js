@@ -20,7 +20,7 @@ let app = express(),
         storage
     }),
     // 开启监听--
-    server = app.listen(nodePort, function () {
+    server = app.listen(nodePort, 'localhost', function () {
         console.log('service is on ' + nodePort + '.');
     }),
     // socket服务--
@@ -111,3 +111,4 @@ app.get('/api/fight/getOneTurn', (req, res) => {
 app.post('/api/fight/startOneFight', (req, res) => {
     svc.startOneFight(req.body, rstmsg => res.send(rstmsg));
 });
+

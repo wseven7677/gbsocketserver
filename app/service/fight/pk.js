@@ -6,7 +6,7 @@ function fillIn(list) {
     let nameList = list.slice(0);
 
     // 必须是2的幂次方--
-    while (nameList.length & (nameList.length - 1) !== 0) {
+    while (nameList.length & (nameList.length - 1) !== 0) { // bug
         nameList.push({
             value: -1,
             label: '空'
@@ -64,7 +64,7 @@ const pk = function (data, callback) {
     // 打乱随机重排获得名单--
     let nameList = [];
     while (contestants.length > 0) {
-        let onePicked = contestants.splice(pickOne(contestants.length), 1);
+        let onePicked = contestants.splice(pickOne(contestants.length), 1); // bug
         nameList.push(onePicked);
     }
     
