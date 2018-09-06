@@ -20,16 +20,16 @@ page.open('https://space.bilibili.com/5050583/#/fans/fans', function (status) {
         // 2s后再开始爬取--
         window.setTimeout(function () {
 
-            fs.write(filePath, '', 'w');
             var allList = []; // output
             var flag = 0;
             var flagAll = 0; // 显示进度
-
+            
             window.setInterval(function () {
                 flagAll += flag;
                 console.log(flagAll);
-
+                
                 if (flag === 2) { // 最后一页时退出
+                    fs.write(filePath, '', 'w');
                     // 写入文件--
                     var i = 0;
                     for (i = 0; i < allList.length; ++i) {

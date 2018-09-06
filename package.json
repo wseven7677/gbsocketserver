@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "babel": "babel app -d dist"
+    "babel": "rm -rf dist && babel app -d dist"
   },
   "author": "wseven7677",
   "license": "ISC",
