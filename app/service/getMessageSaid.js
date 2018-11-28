@@ -22,11 +22,20 @@ const getMessageSaid = function(callback) {
             if (err2) {
                 throw err2;
             }
+            let tmp = [];
             if(saidMsg.length > 5) {
-                callback(saidMsg.slice(saidMsg.length-5));
+                tmp = saidMsg.slice(saidMsg.length-5);
             }else {
-                callback(saidMsg);
+                tmp = saidMsg;
             }
+            let rst = rst.map(one => {
+                return {
+                    name: one.name,
+                    content: one.content,
+                    time: one.time
+                };
+            });
+            callback(rst);
             db.close();
             console.log('database closed for getMessageSaid');
         });
