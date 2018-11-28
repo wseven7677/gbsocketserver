@@ -28,7 +28,7 @@ const getMessageSaid = function(callback) {
             }else {
                 tmp = saidMsg;
             }
-            let rst = rst.map(one => {
+            let rst = tmp.map(one => {
                 return {
                     name: one.name,
                     content: one.content,
