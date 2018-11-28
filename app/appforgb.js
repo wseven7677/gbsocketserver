@@ -56,7 +56,7 @@ io.on('connection', function (socket) {
 
     socket.on('saySth', sth => {
         // 存到数据库
-
+        svc.addMessageSaid(sth);
         // 发布到聊天区：
         io.emit('saidSth', sth);
     });
@@ -87,6 +87,12 @@ app.get('/api/getAllAvaName', (req, res) => {
 
 app.post('/api/addNewName', (req, res) => {
     svc.addNewName(req.body.name, rstmsg => res.send(rstmsg));
+});
+
+app.get('/api/getMessageSaid', (req, res) => {
+    svc.getMessageSaid((saidMsg) => {
+        res.send(saidMsg);
+    });
 });
 
 /**********************************/
