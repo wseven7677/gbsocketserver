@@ -98,6 +98,9 @@ app.get('/api/getMessageSaid', (req, res) => {
 app.post('/api/user/login', (req, res) => {
     svc.userLogin(req.body, rst => res.send(rst));
 });
+app.post('/api/user/registerUser', (req, res) => {
+    svc.registerUser(req.body, rst => res.send(rst));
+});
 
 /******************************** */
 // map:
