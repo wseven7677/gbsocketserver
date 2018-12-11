@@ -13,8 +13,9 @@ const getMapScore = function(req, callback) {
         }
         console.log('database connected for getMapScore');
 
-        var onedb = db.db(dbName),
-            oneCollection = onedb.collection('mapScores');
+        let onedb = db.db(dbName),
+            oneCollection = onedb.collection('mapScores'),
+            colUsers = onedb.collection('userIds');
 
         oneCollection.find().toArray(function(err2, idList) {
             if (err2) {
@@ -28,10 +29,23 @@ const getMapScore = function(req, callback) {
                 };
             });
             if(req.uid === 'all') {
-                callback({
-                    code: 1,
-                    msg: 'all',
-                    data: list
+                colUsers.find().toArray((err3, users) => {
+                    if(err3) throw err3;
+                    let tidyList = list.map(one => {
+                        let rst = users.find(oneUser => {
+                            return oneUser.uid === one.uid;
+                        });
+                        return {
+                            name: rst.name,
+                            score: one.score
+                        };
+                    });
+
+                    callback({
+                        code: 1,
+                        msg: 'all',
+                        data: tidyList
+                    });
                 });
             }else {
                 let index = list.findIndex(one => {
