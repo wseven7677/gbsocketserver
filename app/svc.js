@@ -1,8 +1,11 @@
 import getRoleName from './service/getRoleName.js'
 import getAllAvaName from './service/getAllAvaName.js'
 import addNewName from './service/addNewName.js'
+
 import getMessageSaid from './service/getMessageSaid.js'
 import addMessageSaid from './service/addMessageSaid.js'
+
+import userLogin from './service/userLogin.js'
 
 import registerForFight from './service/fight/registerForFight.js'
 import getCurrFightInfo from './service/fight/getCurrFightInfo.js'
@@ -14,8 +17,11 @@ const svc = {
     getRoleName,
     getAllAvaName,
     addNewName,
+
     getMessageSaid,
     addMessageSaid,
+
+    userLogin,
 
     // fight--
     registerForFight,

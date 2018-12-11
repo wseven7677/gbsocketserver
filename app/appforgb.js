@@ -73,26 +73,30 @@ io.on('connection', function (socket) {
 // 普通服务：
 
 
-app.get('/api/getRoleName', (req, res) => {
-    svc.getRoleName((gotName) => {
-        res.send(gotName);
-    });
-});
+// app.get('/api/getRoleName', (req, res) => {
+//     svc.getRoleName((gotName) => {
+//         res.send(gotName);
+//     });
+// });
 
-app.get('/api/getAllAvaName', (req, res) => {
-    svc.getAllAvaName((gotName) => {
-        res.send(gotName);
-    });
-});
+// app.get('/api/getAllAvaName', (req, res) => {
+//     svc.getAllAvaName((gotName) => {
+//         res.send(gotName);
+//     });
+// });
 
-app.post('/api/addNewName', (req, res) => {
-    svc.addNewName(req.body.name, rstmsg => res.send(rstmsg));
-});
+// app.post('/api/addNewName', (req, res) => {
+//     svc.addNewName(req.body.name, rstmsg => res.send(rstmsg));
+// });
 
 app.get('/api/getMessageSaid', (req, res) => {
     svc.getMessageSaid((saidMsg) => {
         res.send(saidMsg);
     });
+});
+
+app.post('/api/user/login', (req, res) => {
+    svc.userLogin(req.body, rst => res.send(rst));
 });
 
 /**********************************/
