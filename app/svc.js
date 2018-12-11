@@ -7,6 +7,9 @@ import addMessageSaid from './service/addMessageSaid.js'
 
 import userLogin from './service/userLogin.js'
 
+import getMapScore from './service/map/getMapScore.js'
+import postMapScore from './service/map/postMapScore.js'
+
 import registerForFight from './service/fight/registerForFight.js'
 import getCurrFightInfo from './service/fight/getCurrFightInfo.js'
 import checkRight from './service/fight/checkRight.js'
@@ -22,6 +25,9 @@ const svc = {
     addMessageSaid,
 
     userLogin,
+
+    getMapScore,
+    postMapScore,
 
     // fight--
     registerForFight,
