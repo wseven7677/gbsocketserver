@@ -5,8 +5,9 @@ import addNewName from './service/addNewName.js'
 import getMessageSaid from './service/getMessageSaid.js'
 import addMessageSaid from './service/addMessageSaid.js'
 
-import userLogin from './service/userLogin.js'
-import registerUser from './service/registerUser.js'
+import userLogin from './service/user/userLogin.js'
+import registerUser from './service/user/registerUser.js'
+import checkUID from './service/user/checkUID.js'
 
 import getMapScore from './service/map/getMapScore.js'
 import postMapScore from './service/map/postMapScore.js'
@@ -27,6 +28,7 @@ const svc = {
 
     userLogin,
     registerUser,
+    checkUID,
 
     getMapScore,
     postMapScore,

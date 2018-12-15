@@ -101,6 +101,9 @@ app.post('/api/user/login', (req, res) => {
 app.post('/api/user/registerUser', (req, res) => {
     svc.registerUser(req.body, rst => res.send(rst));
 });
+app.post('/api/user/checkUID', (req, res) => {
+    svc.checkUID(req.body, rst => res.send(rst));
+});
 
 /******************************** */
 // map:
