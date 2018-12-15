@@ -29,9 +29,13 @@ const clearZero = function(callback) {
             });
 
             zeroUserList.forEach(oneUser => {
-                colUsers.remove({
+                colUsers.deleteOne({
                     uid: oneUser
                 });
+            });
+
+            oneCollection.deleteMany({
+                score: 0
             });
 
             callback({
