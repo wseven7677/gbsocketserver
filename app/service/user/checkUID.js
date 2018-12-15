@@ -5,6 +5,15 @@ const checkUID = function(data, callback) {
     let url = 'http://space.bilibili.com/'+ data.uid;
     let name = '';
 
+    if(!data.uid) {
+        callback({
+            code: 0,
+            data: null,
+            msg: 'error.'
+        });
+        return;
+    }
+
     http.get(url, res => {
         let html = '';
         res.on('data', data => {
