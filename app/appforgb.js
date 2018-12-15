@@ -94,7 +94,14 @@ app.get('/api/getMessageSaid', (req, res) => {
         res.send(saidMsg);
     });
 });
+/******************************** */
+// system:
+app.get('/api/sys/clearZero', (req, res) => {
+    svc.clearZero(rst => res.send(rst));
+});
 
+/******************************** */
+// user:
 app.post('/api/user/login', (req, res) => {
     svc.userLogin(req.body, rst => res.send(rst));
 });

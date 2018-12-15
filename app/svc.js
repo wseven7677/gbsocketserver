@@ -18,6 +18,8 @@ import checkRight from './service/fight/checkRight.js'
 import getOneTurn from './service/fight/getOneTurn.js'
 import startOneFight from './service/fight/startOneFight.js'
 
+import clearZero from './service/system/clearZero.js'
+
 const svc = {
     getRoleName,
     getAllAvaName,
@@ -38,6 +40,8 @@ const svc = {
     getCurrFightInfo,
     checkRight,
     getOneTurn,
-    startOneFight
+    startOneFight,
+
+    clearZero
 };
 export default svc;
