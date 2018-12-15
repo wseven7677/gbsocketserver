@@ -94,9 +94,31 @@ app.get('/api/getMessageSaid', (req, res) => {
         res.send(saidMsg);
     });
 });
+/******************************** */
+// system:
+app.get('/api/sys/clearZero', (req, res) => {
+    svc.clearZero(rst => res.send(rst));
+});
 
+/******************************** */
+// user:
 app.post('/api/user/login', (req, res) => {
     svc.userLogin(req.body, rst => res.send(rst));
+});
+app.post('/api/user/registerUser', (req, res) => {
+    svc.registerUser(req.body, rst => res.send(rst));
+});
+app.post('/api/user/checkUID', (req, res) => {
+    svc.checkUID(req.body, rst => res.send(rst));
+});
+
+/******************************** */
+// map:
+app.post('/api/map/getMapScore', (req, res) => {
+    svc.getMapScore(req.body, rst => res.send(rst));
+});
+app.post('/api/map/postMapScore', (req, res) => {
+    svc.postMapScore(req.body, rst => res.send(rst));
 });
 
 /**********************************/

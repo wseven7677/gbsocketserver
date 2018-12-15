@@ -23,8 +23,8 @@ const getMessageSaid = function(callback) {
                 throw err2;
             }
             let tmp = [];
-            if(saidMsg.length > 5) {
-                tmp = saidMsg.slice(saidMsg.length-5);
+            if(saidMsg.length > 7) {
+                tmp = saidMsg.slice(saidMsg.length-7);
             }else {
                 tmp = saidMsg;
             }
