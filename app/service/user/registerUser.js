@@ -44,7 +44,7 @@ const registerUser = function (req, callback) {
             
                     callback({
                         code: 1,
-                        msg: 'done.'
+                        msg: '申请成功！'
                     });
                 }
     
