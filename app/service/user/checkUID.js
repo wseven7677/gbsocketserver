@@ -2,7 +2,7 @@ import cheerio from 'cheerio'
 import http from 'http'
 
 const checkUID = function(data, callback) {
-    let url = 'https://space.bilibili.com/'+ data.uid;
+    let url = 'http://space.bilibili.com/'+ data.uid;
     let name = '';
 
     http.get(url, res => {
