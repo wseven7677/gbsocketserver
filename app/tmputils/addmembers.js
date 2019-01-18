@@ -82,7 +82,13 @@ function addmembers() {
     }, rst => {
         console.log(rst.data);
         let data = rst.data;
-        data.forEach(oneData => {
+        data.map(d => {
+            return {
+                value: d.uid,
+                label: d.name,
+                score: d.score
+            };
+        }).forEach(oneData => {
             svc.registerForFight(oneData, () => {});
         });
     });
