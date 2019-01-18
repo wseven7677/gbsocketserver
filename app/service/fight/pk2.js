@@ -34,9 +34,13 @@ function judge(a, b) {
         return a;
     }
 
-    // 正常判断--
+    // 判断--
     let all = a.score + b.score;
     let awin = Math.round(a.score / all);
+    // 防止过强
+    awin = awin > 0.6 ? 0.6 : awin;
+    awin = awin < 0.4 ? 0.4 : awin;
+    
     let rm = Math.random();
     if (rm < awin) {
         return a;
