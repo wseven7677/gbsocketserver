@@ -89,7 +89,7 @@ function addmembers() {
                 score: d.score
             };
         }).forEach(oneData => {
-            svc.registerForFight(oneData, msg => {
+            svc.registerForFight({name: oneData}, msg => {
                 console.log(msg);
             });
         });
