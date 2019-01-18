@@ -103,19 +103,18 @@ const registerForFight = function (data, cb) {
                 let log = currentFight.log;
 
                 let flagHad = list.findIndex(one => { // 是否已报名
-                    if (one.value === oneContestant.value) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    return one.value === oneContestant.value;
                 });
 
                 if (log.length > 0) {
                     callbackarr.push('已截止');
-                } else if (flagHad !== -1) {
-                    callbackarr.push('请不要重复签订');
-                } else {
-                    list.push(oneContestant);
+                }else {
+                    if (flagHad !== -1) {
+                        list[flagHad].score = oneContestant.score;
+                        callbackarr.push('为'+list[flagHad].label+'更新绿总数目到'+ oneContestant.score);
+                    } else {
+                        list.push(oneContestant);
+                    }
 
                     oneCollection.update({
                         'time': currentFight.time
