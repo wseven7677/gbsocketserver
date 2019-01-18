@@ -91,7 +91,7 @@ function addmembers() {
         }).forEach(oneData => {
             setTimeout(() => {
                 svc.registerForFight({name: oneData}, msg => {
-                    console.log(msg);
+                    console.log(oneData.label+':'+msg);
                 });
             }, 1000);
         });
