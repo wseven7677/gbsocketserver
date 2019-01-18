@@ -83,7 +83,7 @@ function addmembers() {
         console.log(rst.data);
         let data = rst.data;
         data.forEach(oneData => {
-            svc.registerForFight(ondData, () => {});
+            svc.registerForFight(oneData, () => {});
         });
     });
 
