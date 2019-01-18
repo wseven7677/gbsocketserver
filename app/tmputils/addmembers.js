@@ -108,6 +108,8 @@ const registerForFight = function (data, cb) {
 
                 if (log.length > 0) {
                     callbackarr.push('已截止');
+                }else if(oneContestant.score === 0) {
+                    callbackarr.push('无分数');
                 }else {
                     if (flagHad !== -1) {
                         list[flagHad].score = oneContestant.score;
