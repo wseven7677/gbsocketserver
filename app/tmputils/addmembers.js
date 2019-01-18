@@ -89,9 +89,11 @@ function addmembers() {
                 score: d.score
             };
         }).forEach(oneData => {
-            svc.registerForFight({name: oneData}, msg => {
-                console.log(msg);
-            });
+            setTimeout(() => {
+                svc.registerForFight({name: oneData}, msg => {
+                    console.log(msg);
+                });
+            }, 1000);
         });
     });
 
