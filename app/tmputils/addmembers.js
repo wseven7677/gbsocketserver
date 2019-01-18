@@ -125,7 +125,7 @@ const registerForFight = function (data, cb) {
                         'log': log
                     })
 
-                    callbackarr.push('契约签订成功');
+                    callbackarr.push('成功');
                 }
             });
 

@@ -35,7 +35,10 @@ function judge(a, b) {
     }
 
     // 正常判断--
-    if (Math.random() > 0.5) {
+    let all = a.score + b.score;
+    let awin = Math.round(a.score / all);
+    let rm = Math.random();
+    if (rm < awin) {
         return a;
     } else {
         return b;
