@@ -75,25 +75,85 @@ const getscore = function (req, callback) {
 
     });
 };
+const registerForFight = function (data, cb) {
+
+    let contestants = data;
+
+    // 连接数据库处理数据--
+    mongoClient.connect(dbUrl, function (err, db) {
+        if (err) {
+            throw err;
+        }
+        console.log('database connected for registerForFight');
+
+        let onedb = db.db(dbName),
+            oneCollection = onedb.collection('fightMatch');
+
+        // 进行增删改查--
+        oneCollection.find().toArray(function (err2, allFight) {
+            if (err2) {
+                throw err2;
+            }
+
+            let callbackarr = [];
+
+            contestants.forEach(oneContestant => {
+                let currentFight = allFight[allFight.length - 1];
+                let list = currentFight.list;
+                let log = currentFight.log;
+
+                let flagHad = list.findIndex(one => { // 是否已报名
+                    if (one.value === oneContestant.value) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+
+                if (log.length > 0) {
+                    callbackarr.push('已截止');
+                } else if (flagHad !== -1) {
+                    callbackarr.push('请不要重复签订');
+                } else {
+                    list.push(oneContestant);
+
+                    oneCollection.update({
+                        'time': currentFight.time
+                    }, {
+                        'memo': currentFight.memo,
+                        'time': currentFight.time,
+                        'list': list,
+                        'log': log
+                    })
+
+                    callbackarr.push('契约签订成功');
+                }
+            });
+
+            cb(callbackarr);
+
+            db.close();
+            console.log('database closed for registerForFight');
+
+        });
+
+    });
+};
 
 function addmembers() {
     getscore({
         uid: 'all'
     }, rst => {
         console.log(rst.data);
-        let data = rst.data;
-        data.map(d => {
+        let data = rst.data.map(d => {
             return {
                 value: d.uid,
                 label: d.name,
                 score: d.score
             };
-        }).forEach(oneData => {
-            setTimeout(() => {
-                svc.registerForFight({name: oneData}, msg => {
-                    console.log(oneData.label+':'+msg);
-                });
-            }, 1000);
+        });
+        registerForFight(data, msg => {
+            console.log(msg);
         });
     });
 
