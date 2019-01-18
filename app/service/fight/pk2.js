@@ -38,9 +38,9 @@ function judge(a, b) {
     let all = a.score + b.score;
     let awin = Math.round(a.score / all);
     // 防止过强
-    awin = awin > 0.6 ? 0.6 : awin;
-    awin = awin < 0.4 ? 0.4 : awin;
-    
+    awin = awin > 0.7 ? 0.7 : awin;
+    awin = awin < 0.3 ? 0.3 : awin;
+
     let rm = Math.random();
     if (rm < awin) {
         return a;
