@@ -1,6 +1,6 @@
 import mongodb from 'mongodb'
 import mongoKey from '../mongoKey'
-import checkUID from '../sevice/user/checkUID'
+import checkUID from '../service/user/checkUID'
 
 let mongoClient = mongodb.MongoClient,
     dbName = mongoKey.dbName,
