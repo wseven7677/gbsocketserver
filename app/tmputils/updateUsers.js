@@ -43,4 +43,4 @@ const updateUsers = function (req, callback) {
     });
 };
 
-export default updateUsers;
+updateUsers();
