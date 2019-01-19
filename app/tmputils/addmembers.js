@@ -112,6 +112,9 @@ const registerForFight = function (data, cb) {
                     callbackarr.push('无分数');
                 }else {
                     if (flagHad !== -1) {
+                        callbackarr.push('为'+list[flagHad].label+'更新名字为'+ oneContestant.label);
+                        list[flagHad].label = oneContestant.label;
+                        
                         list[flagHad].score = oneContestant.score;
                         callbackarr.push('为'+list[flagHad].label+'更新绿总数目到'+ oneContestant.score);
                     } else {

@@ -49,7 +49,7 @@ const registerUser = function (req, callback) {
                 }
     
                 db.close();
-                console.log('database closed for userLogin');
+                console.log('database closed for registerUser');
             });
 
     });
