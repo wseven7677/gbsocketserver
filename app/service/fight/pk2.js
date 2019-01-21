@@ -36,10 +36,10 @@ function judge(a, b) {
 
     // 判断--
     let all = a.score + b.score;
-    let awin = Math.round(a.score / all);
+    let awin = a.score / all;
     // 防止过强
-    awin = awin > 0.7 ? 0.7 : awin;
-    awin = awin < 0.3 ? 0.3 : awin;
+    awin = awin > 0.8 ? 0.8 : awin;
+    awin = awin < 0.2 ? 0.2 : awin;
 
     let rm = Math.random();
     if (rm < awin) {
