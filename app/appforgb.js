@@ -144,3 +144,7 @@ app.post('/api/fight/startOneFight', (req, res) => {
     svc.startOneFight(req.body, rstmsg => res.send(rstmsg));
 });
 
+//----
+app.get('/api/biaoqingbao/name', (req, res) => {
+    svc.getBiaoqingNames(rst => res.send(rst));
+});

@@ -19,6 +19,7 @@ import getOneTurn from './service/fight/getOneTurn.js'
 import startOneFight from './service/fight/startOneFight.js'
 
 import clearZero from './service/system/clearZero.js'
+import getBiaoqingNames from './service/biaoqing/getBiaoqingNames.js'
 
 const svc = {
     getRoleName,
@@ -42,6 +43,7 @@ const svc = {
     getOneTurn,
     startOneFight,
 
-    clearZero
+    clearZero,
+    getBiaoqingNames
 };
 export default svc;
