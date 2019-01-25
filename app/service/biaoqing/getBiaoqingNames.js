@@ -11,7 +11,7 @@ function getNames(cb) {
             return;
         }
 
-        let list = content.split(' ');
+        let list = content.trim().split(' ');
         cb(list);
 
     });
