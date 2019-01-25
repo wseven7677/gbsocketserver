@@ -11,7 +11,9 @@ function getNames(cb) {
             return;
         }
 
-        let list = content.trim().split(' ');
+        let list = content.trim().split(' ').filter(one => {
+            return one.split('.')[1] === 'jpg';
+        });
         cb(list);
 
     });
