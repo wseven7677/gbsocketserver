@@ -7,7 +7,8 @@ let mongoClient = mongodb.MongoClient,
     dbUrl = mongoKey.dbUrl;
 
 
-const updateNames = function (uid, callback) {
+const updateNames = function (data, callback) {
+    let uid = data.uid;
     if (typeof uid !== 'string') {
         callback({
             code: 0,
@@ -41,7 +42,9 @@ const updateNames = function (uid, callback) {
                 oneCollection.updateOne({
                     'uid': uid
                 }, {
-                    'name': rst.data
+                    $set: {
+                        'name': rst.data
+                    }
                 });
                 callback({
                     code: 1,
@@ -50,7 +53,7 @@ const updateNames = function (uid, callback) {
                 });
     
                 db.close();
-                console.log('database closed for clearZero');
+                console.log('database closed for updateNames');
 
             });
         } else {
@@ -63,8 +66,8 @@ const updateNames = function (uid, callback) {
     });
 };
 
-// export default updateNames;
+export default updateNames;
 
-updateNames('', outstring => {
-    console.log(outstring);
-});
+// updateNames('27885754', outstring => {
+//     console.log(outstring);
+// });

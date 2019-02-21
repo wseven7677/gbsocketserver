@@ -100,6 +100,10 @@ app.get('/api/sys/clearZero', (req, res) => {
     svc.clearZero(rst => res.send(rst));
 });
 
+app.post('/api/sys/updateNames', (req, res) => {
+    svc.updateNames(req.body, rst => res.send(rst));
+});
+
 /******************************** */
 // user:
 app.post('/api/user/login', (req, res) => {
