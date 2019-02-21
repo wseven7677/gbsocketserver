@@ -16,20 +16,19 @@ const updateNames = function (uid, callback) {
         });
         return;
     }
-    let rg = new RegExp('^\\d{3}$', 'ig');
-    if (!rg.test(uid)) {
-        callback({
-            code: 0,
-            data: null,
-            msg: 'not numbers.'
-        });
-        return;
-    }
+    // let rg = new RegExp('^\\d{3}$', 'ig');
+    // if (!rg.test(uid)) {
+    //     callback({
+    //         code: 0,
+    //         data: null,
+    //         msg: 'not numbers.'
+    //     });
+    //     return;
+    // }
     checkUID({
         uid
     }, rst => {
         if (rst.code === 1) {
-            newName = rst.data;
             mongoClient.connect(dbUrl, function (err, db) {
                 if (err) {
                     throw err;
@@ -39,11 +38,19 @@ const updateNames = function (uid, callback) {
                 var onedb = db.db(dbName),
                     oneCollection = onedb.collection('userIds');
 
-                oneCollection.update({
+                oneCollection.updateOne({
                     'uid': uid
                 }, {
                     'name': rst.data
                 });
+                callback({
+                    code: 1,
+                    data: rst.data,
+                    msg: 'ok.'
+                });
+    
+                db.close();
+                console.log('database closed for clearZero');
 
             });
         } else {
@@ -56,4 +63,8 @@ const updateNames = function (uid, callback) {
     });
 };
 
-export default updateNames;
+// export default updateNames;
+
+updateNames('', outstring => {
+    console.log(outstring);
+});
