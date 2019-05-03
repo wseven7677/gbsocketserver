@@ -36,7 +36,7 @@ function importFightMembers() {
                     callbackarr.push('已截止');
                 }else if (flagHad === -1) { // 未报名
                     list.push(oneContestant);
-                    col.update({
+                    col.updateOne({
                         'time': currentFight.time
                     }, {
                         'memo': currentFight.memo,
@@ -51,8 +51,7 @@ function importFightMembers() {
             });
 
             console.log(callbackarr);
-            db.close();
-            console.log('database closed for registerForFight');
+            client.close();
 
         });
     });
