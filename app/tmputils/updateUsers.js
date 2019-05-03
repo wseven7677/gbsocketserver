@@ -6,7 +6,11 @@ let mongoClient = mongodb.MongoClient,
     dbName = mongoKey.dbName,
     dbUrl = mongoKey.dbUrl;
 
-
+/**
+ * 作用不明。大概是改名，但是system里已经有改名了。
+ * @param {*} req 
+ * @param {*} callback 
+ */
 const updateUsers = function (req, callback) {
     mongoClient.connect(dbUrl, function (err, db) {
         if (err) {

@@ -6,6 +6,14 @@ let mongoClient = mongodb.MongoClient,
     dbName = mongoKey.dbName,
     dbUrl = mongoKey.dbUrl;
 
+/**
+ * file -- 通过程序将排行榜上的人添加到武道大会报名人员
+ * @param {*} req 
+ * @param {*} callback 
+ */
+
+
+
 const getscore = function (req, callback) {
     mongoClient.connect(dbUrl, function (err, db) {
         if (err) {

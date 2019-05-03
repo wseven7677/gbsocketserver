@@ -23,9 +23,9 @@ function pickOne(len) {
 }
 
 /**
- * 判定两人之间的胜负
+ * 判定两人之间的胜负：使用得分
  */
-function judge(a, b) {
+function judgeWithScore(a, b) {
     // 当有 空选手 时--
     if (a.value === -1 && b.value !== -1) {
         return b;
@@ -45,6 +45,22 @@ function judge(a, b) {
     if (rm < awin) {
         return a;
     } else {
+        return b;
+    }
+}
+
+function judge(a, b) {
+    // 当有 空选手 时--
+    if (a.value === -1 && b.value !== -1) {
+        return b;
+    }
+    if (b.value === -1 && a.value !== -1) {
+        return a;
+    }
+
+    if(Math.random() > 0.5) {
+        return a;
+    }else {
         return b;
     }
 }
