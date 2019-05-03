@@ -8,7 +8,7 @@ let mongoClient = mongodb.MongoClient,
     dbUrl = mongoKey.dbUrl;
 
     /**
-     * 本程序用来批量报名武道大会
+     * 本程序用来批量报名武道大会 批量覆盖
      */
 
 function importFightMembers() {
@@ -26,32 +26,27 @@ function importFightMembers() {
 
             let callbackarr = [];
 
-            members.forEach(oneContestant => {
-                let currentFight = allFight[allFight.length - 1]; // 最后一个比赛
-                let list = currentFight.list;
-                let log = currentFight.log;
-
-                let flagHad = list.findIndex(one => { // 是否已报名
-                    return one.value === oneContestant.value;
-                });
-
-                if (log.length > 0) {
-                    callbackarr.push('已截止');
-                }else if (flagHad === -1) { // 未报名
-                    list.push(oneContestant);
-                    col.updateOne({
-                        'time': currentFight.time
-                    }, {
-                        $set: {
-                            'list': list,
-                            'log': log
-                        }
-                    })
-
+            let currentFight = allFight[allFight.length - 1]; // 最后一个比赛
+            // let list = currentFight.list;
+            let log = currentFight.log;
+            let rstlist = [];
+            if (log.length > 0) {
+                callbackarr.push('已截止');
+            }else {
+                members.forEach(oneContestant => {
+                    rstlist.push(oneContestant);
                     callbackarr.push('成功');
-                }
+                });
+            }
 
-            });
+            col.updateOne({
+                'time': currentFight.time
+            }, {
+                $set: {
+                    'list': rstlist,
+                    'log': log
+                }
+            })
 
             console.log(callbackarr);
             client.close();
