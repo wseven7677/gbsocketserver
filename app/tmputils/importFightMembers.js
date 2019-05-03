@@ -1,12 +1,15 @@
 import mongodb from 'mongodb'
 import mongoKey from '../mongoKey'
 
-import members from './member.json'
+import members from './member.json' // 批量导入的报名列表
 
 let mongoClient = mongodb.MongoClient,
     dbName = mongoKey.dbName,
     dbUrl = mongoKey.dbUrl;
 
+    /**
+     * 本程序用来批量报名武道大会
+     */
 
 function importFightMembers() {
     mongoClient.connect(dbUrl,{ useNewUrlParser: true }, (err, client) => {
