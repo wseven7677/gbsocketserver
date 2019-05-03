@@ -7,13 +7,15 @@ let mongoClient = mongodb.MongoClient,
     dbName = mongoKey.dbName,
     dbUrl = mongoKey.dbUrl;
 
-    /**
-     * 本程序用来批量报名武道大会 批量覆盖
-     */
+/**
+ * 本程序用来批量报名武道大会 批量覆盖
+ */
 
 function importFightMembers() {
-    mongoClient.connect(dbUrl,{ useNewUrlParser: true }, (err, client) => {
-        if(err) {
+    mongoClient.connect(dbUrl, {
+        useNewUrlParser: true
+    }, (err, client) => {
+        if (err) {
             throw err;
         }
         let db = client.db(dbName);
@@ -29,24 +31,18 @@ function importFightMembers() {
             let currentFight = allFight[allFight.length - 1]; // 最后一个比赛
             // let list = currentFight.list;
             let log = currentFight.log;
-            let rstlist = [];
             if (log.length > 0) {
                 callbackarr.push('已截止');
-            }else {
-                members.forEach(oneContestant => {
-                    rstlist.push(oneContestant);
-                    callbackarr.push('成功');
+            } else {
+                col.updateOne({
+                    'time': currentFight.time
+                }, {
+                    $set: {
+                        'list': members,
+                        'log': log
+                    }
                 });
             }
-
-            col.updateOne({
-                'time': currentFight.time
-            }, {
-                $set: {
-                    'list': rstlist,
-                    'log': log
-                }
-            })
 
             console.log(callbackarr);
             client.close();
