@@ -9,7 +9,7 @@ let mongoClient = mongodb.MongoClient,
 
 
 function importFightMembers() {
-    mongoClient.connect(dbUrl, (err, client) => {
+    mongoClient.connect(dbUrl,{ useNewUrlParser: true }, (err, client) => {
         if(err) {
             throw err;
         }
@@ -39,10 +39,10 @@ function importFightMembers() {
                     col.updateOne({
                         'time': currentFight.time
                     }, {
-                        'memo': currentFight.memo,
-                        'time': currentFight.time,
-                        'list': list,
-                        'log': log
+                        $set: {
+                            'list': list,
+                            'log': log
+                        }
                     })
 
                     callbackarr.push('成功');
