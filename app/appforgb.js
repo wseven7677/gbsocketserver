@@ -36,9 +36,9 @@ let app = express(),
 
 // 开启监听--
 // http
-let server = app.listen(nodePort, 'localhost', function () {
-        console.log('service is on ' + nodePort + '.');
-    });
+// let server = app.listen(nodePort, 'localhost', function () {
+//         console.log('service is on ' + nodePort + '.');
+//     });
 // https
 let servers = https.createServer(credentials, app).listen(nodePort);
 // socket服务--
