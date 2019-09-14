@@ -1,3 +1,4 @@
+import https from 'https'
 import express from 'express'
 import socketIo from 'socket.io'
 
@@ -5,6 +6,19 @@ import bodyparser from 'body-parser'
 import multer from 'multer'
 
 import svc from './svc.js'
+
+import fs from 'fs'
+
+// Certificate
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/www.greenblue.tk/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/www.greenblue.tk/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/www.greenblue.tk/chain.pem', 'utf8');
+
+const credentials = {
+	key: privateKey,
+	cert: certificate,
+	ca: ca
+};
 
 let app = express(),
     // 服务开启端口--
@@ -18,13 +32,18 @@ let app = express(),
     }),
     upload = multer({
         storage
-    }),
-    // 开启监听--
-    server = app.listen(nodePort, 'localhost', function () {
+    });
+
+// 开启监听--
+// http
+let server = app.listen(nodePort, 'localhost', function () {
         console.log('service is on ' + nodePort + '.');
-    }),
-    // socket服务--
-    io = socketIo(server);
+    });
+// https
+let servers = https.createServer(credentials, app).listen(nodePort);
+// socket服务--
+// let io = socketIo(server);
+let io = socketIo(servers);
 
 
 /**********************************/
